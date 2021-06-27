@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>@yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('templates')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('templates')}}/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -169,7 +170,7 @@
           <img src="{{asset('templates')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -192,16 +193,15 @@
                with font-awesome or any other icon font library -->
           <li class="nav-header">MAIN</li>
           <li class="nav-item">
-            <a href="{{route('create-category')}}" class="nav-link">
+            <a href="{{route('categories')}}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Categories
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('create-website')}}" class="nav-link">
+            <a href="{{route('websites')}}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Websites

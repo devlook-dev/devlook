@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function ()
+{
+    Route::get('/websites', [WebsiteController::class, 'admin'])->name('websites');
+    Route::get('/create-website', [WebsiteController::class, 'add'])->name('create-website');
+    Route::post('/insert-website', [WebsiteController::class, 'insert'])->name('insert-website');
+    Route::post('/delete-website', [WebsiteController::class, 'insert'])->name('delete-website');
+    Route::view('/categories', 'admin/category')->name('categories');
+});
 
-Route::view('/create-website', 'admin/website')->name('create-website');
-Route::view('/create-category', 'admin/category')->name('create-category');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,6 +1,14 @@
  @extends('admin.dashboard')
+ @section('title', 'Website Manager')
 
  @section('main-content')
+ @if (session('pesan'))
+ <div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <h5><i class="icon fas fa-check"></i> Success!</h5>
+  {{session('pesan')}}
+</div>
+ @endif
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -37,7 +45,11 @@
             </button>
           </div>
         </div>
+        {{-- {{dd($websites)}} --}}
         <div class="card-body">
+          <button onclick="location.href='{{route('create-website')}}'" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add data
+          </button>
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
@@ -49,17 +61,22 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1</td>
-                <td>Coursera</td>
-                <td>www.coursera.com</td>
-                <td>Online Courses</td>
-                <td>
-                  <a href="" data-toggle="tooltip" data-placement="top" title="Detail" class="btn btn-primary btn-sm"><i class="fas fa-book"></i></a>
-                  <a href="" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-success btn-sm"><i class="nav-icons fas fa-edit"></i></a>
-                  <a href="" data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm"><i class="nav-icons fas fa-trash"></i></a>
-                </td>
-              </tr>
+                @php $no=1;@endphp
+                @foreach ($websites as $item)
+                <tr>
+                  <td>{{$no}}</td>
+                  <td>{{$item->name}}</td>
+                  <td>{{$item->link}}</td>
+                  <td>{{$item->category->name}}</td>
+                  <td>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Detail" class="btn btn-primary btn-sm"><i class="fas fa-book"></i></a>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-success btn-sm"><i class="nav-icons fas fa-edit"></i></a>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm"><i class="nav-icons fas fa-trash"></i></a>
+                  </td>
+                </tr>
+                @php $no+=1;@endphp
+                @endforeach
+              </tbody>
             </table>
           </div>
          <!-- /.card-body -->

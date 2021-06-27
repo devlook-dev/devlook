@@ -1,6 +1,7 @@
- @extends('admin.dashboard')
+@extends('admin.dashboard')
+@section('title', 'Categories')
 
- @section('main-content')
+@section('main-content')
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

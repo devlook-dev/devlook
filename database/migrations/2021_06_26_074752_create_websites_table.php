@@ -17,7 +17,7 @@ class CreateWebsitesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('foto');
+            $table->string('link');
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });

@@ -9,10 +9,20 @@ use Illuminate\Support\Facades\DB;
 class Website extends Model
 {
     use HasFactory;
+    protected $table = 'websites';
 
     public function getData()
     {
         return DB::all();
+    }
+    public function detailData($id)
+    {
+        return DB::where('id', $id)->first();
+    }
+
+    public function insertData($data)
+    {
+        DB::insert($data);
     }
 
     public function category()
