@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/create-website', 'admin/website')->name('create-website');
+Route::view('/create-category', 'admin/category')->name('create-category');
